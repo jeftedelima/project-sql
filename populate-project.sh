@@ -10,8 +10,12 @@ services:
   db:
     image: mariadb:10.6
     restart: always
+    container_name: ${name}_db
     environment:
-      MARIADB_ROOT_PASSWORD: ${password}
+      MARIADB_ROOT_PASSWORD: project-sql
+      MARIADB_USER: ${name}
+      MARIADB_PASSWORD : ${password}
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     volumes:
       - './data:/var/lib/mysql'
     mem_limit: 512M
@@ -20,6 +24,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
+    container_name: ${name}_phpmyadmin
     restart: always
     ports:
       - 80${port}:80
