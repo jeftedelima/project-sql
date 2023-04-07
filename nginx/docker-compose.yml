@@ -1,0 +1,6 @@
+web:
+  image: nginx
+  volumes:
+   - ./etc:/etc/nginx/
+  ports:
+   - "80:80"
