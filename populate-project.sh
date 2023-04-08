@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ ! -d "project" ] && mkdir projects
+
 for name in `cat info-alunos | awk -F ':' '{print $1}'` ; do
   mkdir "projects/${name}"
   password=$(cat info-alunos | grep ${name} | awk -F ':' '{print $2}')
